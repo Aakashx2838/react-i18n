@@ -1,4 +1,6 @@
 {
+  "110f6fd3e33b825b_one": "{{name}} has {{count}} notification",
+  "110f6fd3e33b825b_other": "{{name}} has {{count}} notifications",
   "1753f0a9fe1b90d1": "Hola {{name}}",
   "71096effd1880ef7": "{{name}} tiene {{count}} mensajes no leídos",
   "71740c8c2e8fb474": "Bienvenido a Reaccionar",

@@ -1,92 +1,74 @@
 import { useTranslation } from "react-i18next";
 import { useIntl } from "./utils/intl";
-import { useMemo } from "react";
+import { PerfBenchmark } from "./components/perf-benchmark";
 
 function App() {
   const { i18n } = useTranslation();
   const intl = useIntl();
 
-  const value = useMemo(() => {
-    let sum = 0;
-    let x = "";
-
-    for (let i = 0; i < 100_000; i++) {
-      // eslint-disable-next-line react-hooks/purity
-      const start = performance.now();
-      x = intl(
-        "{{name}} has {{count}} notification |||| {{name}} has {{count}} notifications",
-        {
-          name: "Aakash",
-          count: 99,
-        },
-      );
-      // eslint-disable-next-line react-hooks/purity
-      const end = performance.now();
-
-      sum += end - start;
-    }
-    console.log(`Avg in ${sum / 100_000} ms`);
-
-    return x;
-  }, [intl]);
-
   return (
     <div>
-      {value}
-      <select
-        value={i18n.language}
-        onChange={(e) => i18n.changeLanguage(e.target.value)}
-      >
-        <option value="en">English</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-      </select>
+      <PerfBenchmark />
 
-      {/* Plain string — no options needed */}
-      <div>{intl("Welcome to React")}</div>
+      <hr style={{ margin: "2rem 0" }} />
 
-      {/* Single interpolation variable */}
-      <div>{intl("Hello {{name}}", { name: "Aakash" })}</div>
+      <div style={{ padding: "2rem" }}>
+        <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Demo</h2>
+        <select
+          value={i18n.language}
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+        </select>
 
-      {/* Multiple interpolation variables */}
-      <div>
-        {intl("{{name}} has {{count}} unread messages", {
-          name: "Aakash",
-          count: 12,
-        })}
-      </div>
+        {/* Plain string — no options needed */}
+        <div>{intl("Welcome to React")}</div>
 
-      {/* Pluralization with count */}
-      <div>{intl("{{count}} item |||| {{count}} items", { count: 1 })}</div>
-      <div>{intl("{{count}} item |||| {{count}} items", { count: 5 })}</div>
+        {/* Single interpolation variable */}
+        <div>{intl("Hello {{name}}", { name: "Aakash" })}</div>
 
-      {/* Pluralization with extra variables */}
-      <div>
-        {intl(
-          "{{name}} has {{count}} notification |||| {{name}} has {{count}} notifications",
-          {
+        {/* Multiple interpolation variables */}
+        <div>
+          {intl("{{name}} has {{count}} unread messages", {
             name: "Aakash",
-            count: 1,
-          },
-        )}
-      </div>
-      <div>
-        {intl(
-          "{{name}} has {{count}} notification |||| {{name}} has {{count}} notifications",
-          {
-            name: "Aakash",
-            count: 99,
-          },
-        )}
-      </div>
+            count: 12,
+          })}
+        </div>
 
-      {/* Multiple different variables */}
-      <div>
-        {intl("{{city}}, {{country}} — {{temperature}}°C", {
-          city: "Kathmandu",
-          country: "Nepal",
-          temperature: 28,
-        })}
+        {/* Pluralization with count */}
+        <div>{intl("{{count}} item |||| {{count}} items", { count: 1 })}</div>
+        <div>{intl("{{count}} item |||| {{count}} items", { count: 5 })}</div>
+
+        {/* Pluralization with extra variables */}
+        <div>
+          {intl(
+            "{{name}} has {{count}} notification |||| {{name}} has {{count}} notifications",
+            {
+              name: "Aakash",
+              count: 1,
+            },
+          )}
+        </div>
+        <div>
+          {intl(
+            "{{name}} has {{count}} notification |||| {{name}} has {{count}} notifications",
+            {
+              name: "Aakash",
+              count: 99,
+            },
+          )}
+        </div>
+
+        {/* Multiple different variables */}
+        <div>
+          {intl("{{city}}, {{country}} — {{temperature}}°C", {
+            city: "Kathmandu",
+            country: "Nepal",
+            temperature: 28,
+          })}
+        </div>
       </div>
     </div>
   );
