@@ -168,6 +168,36 @@ export function intlExtractPlugin(): Plugin {
       updateLocaleFiles(allStrings);
     },
 
+    transform(code, id) {
+      if (!id.startsWith(srcDir)) return;
+      if (id.includes(path.join("utils", "intl.ts"))) return;
+      if (!(id.endsWith(".ts") || id.endsWith(".tsx"))) return;
+      if (!code.includes("intl(")) return;
+
+      const regex = /\bintl\(\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g;
+      let result = code;
+      let offset = 0;
+      let changed = false;
+      let match;
+
+      while ((match = regex.exec(code)) !== null) {
+        const stringLiteral = match[1];
+        const quote = stringLiteral[0];
+        const text = stringLiteral.slice(1, -1);
+        const hash = generateHash(text);
+
+        const replacement = `intl(${quote}${hash}${quote}`;
+        const start = match.index + offset;
+        const end = start + match[0].length;
+        result = result.slice(0, start) + replacement + result.slice(end);
+        offset += replacement.length - match[0].length;
+        changed = true;
+      }
+
+      if (!changed) return;
+      return { code: result, map: null };
+    },
+
     handleHotUpdate({ file }) {
       if (file.endsWith(".json")) return;
       if (!file.startsWith(srcDir)) return;
