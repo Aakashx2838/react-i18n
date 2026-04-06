@@ -1,0 +1,10 @@
+{
+  "1753f0a9fe1b90d1": "Hello {{name}}",
+  "71096effd1880ef7": "{{name}} has {{count}} unread messages",
+  "71740c8c2e8fb474": "Welcome to React",
+  "7e509f330798884b_one": "{{count}} item",
+  "7e509f330798884b_other": "{{count}} items",
+  "c2214696567a835e": "{{city}}, {{country}} — {{temperature}}°C",
+  "ee4a3151b7069869_one": "{{name}} has {{count}} notification",
+  "ee4a3151b7069869_other": "{{name}} has {{count}} notifications"
+}

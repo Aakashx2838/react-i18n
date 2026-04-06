@@ -1,0 +1,10 @@
+{
+  "1753f0a9fe1b90d1": "Hola {{name}}",
+  "71096effd1880ef7": "{{name}} tiene {{count}} mensajes no leídos",
+  "71740c8c2e8fb474": "Bienvenido a Reaccionar",
+  "7e509f330798884b_one": "{{count}} elemento",
+  "7e509f330798884b_other": "{{count}} artículos",
+  "c2214696567a835e": "{{city}}, {{country}} — {{temperature}}°C",
+  "ee4a3151b7069869_one": "{{name}} tiene notificación {{count}}",
+  "ee4a3151b7069869_other": "{{name}} tiene notificaciones {{count}}"
+}

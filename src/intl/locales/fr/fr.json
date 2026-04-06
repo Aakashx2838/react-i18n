@@ -1,0 +1,10 @@
+{
+  "1753f0a9fe1b90d1": "Bonjour {{name}}",
+  "71096effd1880ef7": "{{name}} a {{count}} messages non lus",
+  "71740c8c2e8fb474": "Bienvenue sur React",
+  "7e509f330798884b_one": "{{count}} article",
+  "7e509f330798884b_other": "{{count}} articles",
+  "c2214696567a835e": "{{city}}, {{country}} — {{temperature}}°C",
+  "ee4a3151b7069869_one": "{{name}} a une notification {{count}}",
+  "ee4a3151b7069869_other": "{{name}} a des notifications {{count}}"
+}
