@@ -6,33 +6,8 @@ function App() {
   const { i18n } = useTranslation();
   const intl = useIntl();
 
-  const value = useMemo(() => {
-    let sum = 0;
-    let x = "";
-
-    for (let i = 0; i < 100_000; i++) {
-      // eslint-disable-next-line react-hooks/purity
-      const start = performance.now();
-      x = intl(
-        "{{name}} has {{count}} notification |||| {{name}} has {{count}} notifications",
-        {
-          name: "Aakash",
-          count: 99,
-        },
-      );
-      // eslint-disable-next-line react-hooks/purity
-      const end = performance.now();
-
-      sum += end - start;
-    }
-    console.log(`Avg in ${sum / 100_000} ms`);
-
-    return x;
-  }, [intl]);
-
   return (
     <div>
-      {value}
       <select
         value={i18n.language}
         onChange={(e) => i18n.changeLanguage(e.target.value)}
