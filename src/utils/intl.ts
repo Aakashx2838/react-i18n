@@ -35,19 +35,9 @@ type IntlFn = <S extends string>(
   ...args: NeedsOptions<S> extends true ? [options: IntlOptions<S>] : []
 ) => string;
 
-function createIntl(t: typeof i18next.t): IntlFn {
-  return <S extends string>(
-    str: S,
-    ...args: NeedsOptions<S> extends true ? [options: IntlOptions<S>] : []
-  ): string => {
-    const options = args[0] as Record<string, string | number> | undefined;
-    return t(str, { ...options });
-  };
-}
-
-export const intl: IntlFn = createIntl(i18next.t.bind(i18next));
+export const intl = i18next.t.bind(i18next) as IntlFn;
 
 export function useIntl(): IntlFn {
-  const { t } = useTranslation();
-  return createIntl(t);
+  useTranslation(); // subscribe to language changes for re-renders
+  return intl;
 }
